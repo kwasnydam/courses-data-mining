@@ -1,0 +1,72 @@
+---
+title: "laboratory 1 and 2 notebook"
+output: html_notebook
+---
+## lab_1.3
+
+```{r}
+age <- c(13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70)
+age
+age_mean <- mean(age);
+age_median <- median(age);
+sprintf("mean: %.2f", age_mean)
+sprintf("median: %.2f", age_median)
+age_quartiles <- quantile(age);
+sprintf("quartiles: %.2f", age_quartiles)
+```
+
+## lab_1.7
+
+Create data and fill a data.frame with it.
+
+```{r}
+
+# create the data frame with the olympics details
+olympic_years <- c(1992, 1994, 1998, 2002, 2006, 2010)
+olympic_places <- c("Albertville","Lillehammer", "Nagano", "Salt Lake City", "Torino", "Vancourver")
+olympic_head_of_state <- c("F. Mitterand","King Harald V", "Emperor Akihito", "President G.Bush", "President C. Ciampi", "Governor General M.Jean")
+olympics <- data.frame("year" = olympic_years, "place" = olympic_places, "head" = olympic_head_of_state)
+olympics
+```
+
+Add a new feature to the created data frame
+
+```{r}
+olympics$num_of_disciplines <- c(57, 61, 68, 78, 84, 86)
+```
+
+
+display head of olympics where more then 78 discipines occured
+
+```{r}
+head_of_olympics_with_more_then_78_games <- olympics$head[olympics$num_of_disciplines>78]
+head_of_olympics_with_more_then_78_games
+```
+
+Calculate mean of the disciplines and display olympics with more disciplines then the mean
+
+```{r}
+num_of_disciplines_mean <- mean(olympics$num_of_disciplines)
+olympics$num_of_disciplines
+olympics[olympics$num_of_disciplines > num_of_disciplines_mean,]
+```
+## Exercise 1.8
+1.8.1. Mean Normalize the number of disciplines
+```{r}
+num_of_disciplines <- olympics$num_of_disciplines
+num_of_disciplines_mean_normalized <- (num_of_disciplines-mean(num_of_disciplines))/100
+num_of_disciplines_mean_normalized
+```
+1.8.3. Substract standard deviation and divide by midrange
+```{r}
+num_of_disciplines_std <- sd(num_of_disciplines)
+num_of_disciplines_midrange <- (max(num_of_disciplines) + min(num_of_disciplines))/2
+num_of_disciplines_std
+num_of_disciplines_midrange
+(num_of_disciplines - num_of_disciplines_std)/num_of_disciplines_midrange
+```
+## Exercise 1.9
+```{r}
+queen_elisabeth <- data.frame("year" = c(1994:1998), "passangers" = c(34567,34678,36789,38102,39024))
+hist(queen_elisabeth$passangers, 5, col='green')
+```
