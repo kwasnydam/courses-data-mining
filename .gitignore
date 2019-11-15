@@ -1,1 +1,11 @@
+# pdf files
 *.pdf
+
+# hidden files
+.*
+
+# html files
+*.html
+
+# text files
+*.txt
